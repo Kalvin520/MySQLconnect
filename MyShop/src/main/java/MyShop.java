@@ -1,6 +1,11 @@
 public class MyShop {
     public static void main(String[] args) {
-        System.out.println("jdbc test!");
-        System.out.println();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            System.out.println("jdbc init!");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Done.");
     }
 }
