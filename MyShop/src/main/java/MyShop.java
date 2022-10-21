@@ -9,5 +9,6 @@ public class MyShop {
             e.printStackTrace();
         }
         System.out.println("done.");
+        System.out.println("今天放風");
     }
 }
