@@ -1,14 +1,12 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class MyShop {
     public static void main(String[] args) {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            System.out.println("jdbc init!");
-        }
-        catch (ClassNotFoundException e){
-            e.printStackTrace();
-        }
+        Connection connection = DBUtil.getConnection();
+        //傳入物件進行關閉
+        DBUtil.close(connection);
         System.out.println("done.");
-        System.out.println("今天放風");
     }
 }
