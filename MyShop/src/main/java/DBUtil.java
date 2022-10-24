@@ -9,11 +9,12 @@ public class DBUtil {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
         } catch (ClassNotFoundException e) {
+            System.out.println("找不到驅動程式類別");
             e.printStackTrace();
         }
     }
 
-    public static String url = "jdbc:mysql://localhost:3306/sys?useSSL=false ";
+    public static String url = "jdbc:mysql://localhost:3306/mysql_DB?useSSL=false ";
     public static String user = "root";
     public static String password = "tv228222";
 
@@ -24,6 +25,7 @@ public class DBUtil {
         try {
             connection = DriverManager.getConnection(url, user, password);
             System.out.println("connection open.");
+            System.out.println(connection);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
