@@ -6,8 +6,6 @@ public class source {
     public static String url = "jdbc:mysql://localhost:3306/mysql_DB?";
     public static String user = "root";
     public static String password = "tv228222";
-
-
     //在屬性區宣告靜態區塊(類別建立只能引入一次)
     static {
         try {
