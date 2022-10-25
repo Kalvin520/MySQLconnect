@@ -10,15 +10,16 @@ public class implementDBSource implements DBSource{
     private static String url = "jdbc:mysql://localhost:3306/mysql_DB?";
     private static String user = "root";
     private static String password = "tv228222";
-    public implementDBSource() throws IOException, ClassNotFoundException{
-        this("jdbc.properties");
-    }
+    public implementDBSource() {
+        try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+            System.out.println("驅動以連接完成");
+        } catch (ClassNotFoundException e) {
+        e.printStackTrace();
+        System.out.println("程式驅動找不到");
+        }
 
-    public implementDBSource(String configFile) throws IOException, ClassNotFoundException{
-        properties = new Properties();
-        properties.load(new FileInputStream(configFile));
     }
-
     @Override
     public Connection getconnection() throws SQLException {
         return DriverManager.getConnection(url, user, password);
