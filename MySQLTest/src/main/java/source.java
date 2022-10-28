@@ -12,6 +12,7 @@ public class source {
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             System.out.println("程式驅動找不到");
+
             e.printStackTrace();
 
         }
