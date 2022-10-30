@@ -13,7 +13,7 @@ public class implementDBSource implements DBSource{
     public implementDBSource() {
         try {
         Class.forName("com.mysql.cj.jdbc.Driver");
-            System.out.println("日常偷懶xD");
+            System.out.println("日常偷懶xD...");
             System.out.println("驅動以連接完成");
         } catch (ClassNotFoundException e) {
         e.printStackTrace();
