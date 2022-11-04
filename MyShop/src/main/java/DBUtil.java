@@ -28,17 +28,22 @@ public class DBUtil {
             connection = DriverManager.getConnection(url, user, password);
             //獲取SQL語法
             Statement statement = connection.createStatement();
-            String str = "create table member (" + "id Integer primary key," + "name varchar(10)," + "sex varchar(1))";
-            statement.executeUpdate(str);
+//            String str = "create table member (" + "id Integer primary key," + "name varchar(10)," + "sex varchar(10))";
+//            statement.executeUpdate(str);
             System.out.println("connection open.");
 
 
         System.out.println("member 資料表已建立");
 
         String[] str ={
-                "insert into mydatabase.member(id,name,sex) values(1,\"Tome\",\"male\")",
-                "insert into mydatabase.member(id,name,sex) values(2,\"Mary\",\"female\")"
+                "insert into mysql_DB.member(id,name,sex) values(2,\"jerry\",\"男\")"
         };
+
+        int count = 0;
+        for(String tmp:str){
+            count = statement.executeUpdate(tmp);
+            System.out.println("新增："+ count + "筆");
+        }
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
