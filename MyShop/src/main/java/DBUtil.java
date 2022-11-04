@@ -1,6 +1,7 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class DBUtil {
     //在屬性區宣告靜態區塊(類別建立只能引入一次)
@@ -23,9 +24,15 @@ public class DBUtil {
         //取得資料庫連接物件
         Connection connection = null;
         try {
+            //與資料庫連接
             connection = DriverManager.getConnection(url, user, password);
+            //獲取SQL語法
+            Statement statement = connection.createStatement();
+
             System.out.println("connection open.");
-            System.out.println(connection);
+
+            
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
