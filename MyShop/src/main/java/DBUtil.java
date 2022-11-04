@@ -33,10 +33,10 @@ public class DBUtil {
             System.out.println("connection open.");
 
 
-        System.out.println("member 資料表已建立");
+        //System.out.println("member 資料表已建立");
 
         String[] str ={
-                "insert into mysql_DB.member(id,name,sex) values(2,\"jerry\",\"男\")"
+//                "insert into mysql_DB.member(id,name,sex) values(2,\"jerry\",\"男\")"
         };
 
         int count = 0;
