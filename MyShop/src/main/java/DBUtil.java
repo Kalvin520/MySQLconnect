@@ -39,7 +39,7 @@ public class DBUtil {
 //                "insert into mysql_DB.member(id,name,sex) values(2,\"jerry\",\"男\")"
         };
 
-        int count = 0;
+        int count ;
         for(String tmp:str){
             count = statement.executeUpdate(tmp);
             System.out.println("新增："+ count + "筆");
