@@ -47,12 +47,12 @@ public class DBUtil {
 
             //建立查詢物件
             ResultSet rs = statement.executeQuery(str);
-            System.out.println("資料庫連線成功");
+            System.out.println("connection open.");
 
             while (rs.next()){
                 System.out.println("第" + rs.getRow() + "筆");
-                System.out.println(rs.getInt("id") + "\t");
-                System.out.println(rs.getString("name") + "\t");
+                System.out.print(rs.getInt("id") + "\t");
+                System.out.print(rs.getString("name") + "\t");
                 System.out.println(rs.getString("sex") + "\t");
             }
 
@@ -60,9 +60,8 @@ public class DBUtil {
         //System.out.println("member 資料表已建立");
 
         String[] str ={
-//                "insert into mysql_DB.member(id,name,sex) values(2,\"jerry\",\"男\")"
+                "insert into mysql_DB.member(id,name,sex) values(3,\"marry\",\"女\")"
         };
-
 //        int count ;
 //        for(String tmp:str){
 //            count = statement.executeUpdate(tmp);
@@ -86,6 +85,11 @@ public class DBUtil {
         System.out.println();
 
         //取得欄位數量
+        int columns = rs.getMetaData().getColumnCount();
+        for (int i = 1; i <= columns; i++){
+            System.out.print(rs.getMetaData().getColumnName(i) + ":");//取得欄位名稱
+            System.out.println(rs.getMetaData().getColumnTypeName(i));//取得欄位資料型態
+        }
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
