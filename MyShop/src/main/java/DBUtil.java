@@ -27,7 +27,9 @@ public class DBUtil {
     }
 
     //SQL查詢語法
-    static String str = "select * from mysql_DB.member";
+    static String str = "select * from mysql_DB.member where name like '%r%'";
+
+
 
     //建立取得資料庫連街物件靜態方法
     public static Connection getConnection() {
@@ -67,29 +69,31 @@ public class DBUtil {
 //            count = statement.executeUpdate(tmp);
 //            System.out.println("新增："+ count + "筆");
 //        }
-        //移到資料庫結尾
-        rs.last();
-        if (rs.isLast()){
-            System.out.println("資料庫結尾");
-        }
 
-        //移到資料庫開頭
-        rs.first();
-        if (rs.isFirst()){
-            System.out.println("資料庫結開頭");
-        }
 
-        //移到資料庫第二筆
-        rs.absolute(2);
-        System.out.println(rs.getString("name") + "\t");
-        System.out.println();
+//        //移到資料庫結尾
+//        rs.last();
+//        if (rs.isLast()){
+//            System.out.println("資料庫結尾");
+//        }
 
-        //取得欄位數量
-        int columns = rs.getMetaData().getColumnCount();
-        for (int i = 1; i <= columns; i++){
-            System.out.print(rs.getMetaData().getColumnName(i) + ":");//取得欄位名稱
-            System.out.println(rs.getMetaData().getColumnTypeName(i));//取得欄位資料型態
-        }
+//        //移到資料庫開頭
+//        rs.first();
+//        if (rs.isFirst()){
+//            System.out.println("資料庫結開頭");
+//        }
+//
+//        //移到資料庫第二筆
+//        rs.absolute(2);
+//        System.out.println(rs.getString("name") + "\t");
+//        System.out.println();
+
+//        //取得欄位數量
+//        int columns = rs.getMetaData().getColumnCount();
+//        for (int i = 1; i <= columns; i++){
+//            System.out.print(rs.getMetaData().getColumnName(i) + ":");//取得欄位名稱
+//            System.out.println(rs.getMetaData().getColumnTypeName(i));//取得欄位資料型態
+//        }
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
