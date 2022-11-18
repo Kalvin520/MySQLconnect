@@ -3,6 +3,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import java.sql.SQLException;
+import java.sql.PreparedStatement;
 
 /**
  *
@@ -24,8 +25,11 @@ public class DBUtil {
         }
     }
 
-    //SQLcreat
-    static String strcre = "create table member (" + "id Integer primary key," + "name varchar(10)," + "sex varchar(10))";
+    //SQLset
+    static String strset = "create table member (" + "id Integer primary key," + "name varchar(10)," + "sex varchar(10))";
+
+    //SQLcre
+    static String strcre = "insert into mysql_DB.member (id, name, sex) values (?, ?, ?)";
 
     //SQL查詢語法
     static String strRead = " select * from mysql_DB.member where name like '%r%' ";
@@ -48,12 +52,19 @@ public class DBUtil {
             //獲取SQL語法
             //ResultSet.TYPE_SCROLL_INSENSITIVE:使結果可以來回查看
             //ResultSet.CONCUR_UPDATATABLE:指定可以更新結果集
-            Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+//            Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            PreparedStatement preparedStatement = connection.prepareStatement(strcre);
             System.out.println("connection open.");
 
-            //新增物件
-//        String[] str ={
-//                "insert into mysql_DB.member(id,name,sex) values(3,\"marry\",\"女\")"
+
+
+            preparedStatement.setInt(1,2);
+            preparedStatement.setString(2,"john");
+            preparedStatement.setString(3,"男");
+            int countcre = preparedStatement.executeUpdate();
+            System.out.println("新增："+ countcre + "筆");
+
+          
 //        };
 //        int count ;
 //        for(String tmp:str){
@@ -78,10 +89,10 @@ public class DBUtil {
 //            System.out.println("connection open.");
 
             //刪除物件
-            int countdel = statement.executeUpdate(strDel);
-            System.out.println("刪除" + countdel +"筆");
-
-            System.out.println("member 資料表已建立");
+//            int countdel = statement.executeUpdate(strDel);
+//            System.out.println("刪除" + countdel +"筆");
+//
+//            System.out.println("member 資料表已建立");
             
 //        //移到資料庫結尾
 //        rs.last();
