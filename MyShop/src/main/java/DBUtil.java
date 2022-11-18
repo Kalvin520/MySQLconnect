@@ -30,12 +30,13 @@ public class DBUtil {
     static String strcre = "create table member (" + "id Integer primary key," + "name varchar(10)," + "sex varchar(10))";
 
     //SQL查詢語法
-    static String strRead = "select * from mysql_DB.member where name like '%r%'";
+    static String strRead = " select * from mysql_DB.member where name like '%r%' ";
 
     //SQL更新語法
-    static String strUpdate = "update mysql_DB.member set name='merry' where name='jerry'";
+    static String strUpdate = " update mysql_DB.member set name = 'merry' where name = 'jerry' ";
 
     //SQL刪除語法
+    static String strDel = " delete from mysql_DB.member where name = 'merry' ";
 
 
 
@@ -50,6 +51,8 @@ public class DBUtil {
             //ResultSet.TYPE_SCROLL_INSENSITIVE:使結果可以來回查看
             //ResultSet.CONCUR_UPDATATABLE:指定可以更新結果集
             Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            System.out.println("connection open.");
+
 
             //增加物件
             // statement.executeUpdate(strcre);
@@ -66,9 +69,13 @@ public class DBUtil {
 //            }
 
             //更新物件
-//            int count = statement.executeUpdate(strUpdate);
-//            System.out.println("更新" + count +"筆");
+//            int countup = statement.executeUpdate(strUpdate);
+//            System.out.println("更新" + countup +"筆");
 //            System.out.println("connection open.");
+
+            //刪除物件
+            int countdel = statement.executeUpdate(strDel);
+            System.out.println("刪除" + countdel +"筆");
 
         //System.out.println("member 資料表已建立");
 
