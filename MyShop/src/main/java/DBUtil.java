@@ -1,10 +1,8 @@
-import com.mysql.cj.util.EscapeTokenizer;
 import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import java.sql.SQLException;
-import java.sql.*;
 
 /**
  *
@@ -53,9 +51,15 @@ public class DBUtil {
             Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
             System.out.println("connection open.");
 
-
-            //增加物件
-            // statement.executeUpdate(strcre);
+            //新增物件
+//        String[] str ={
+//                "insert into mysql_DB.member(id,name,sex) values(3,\"marry\",\"女\")"
+//        };
+//        int count ;
+//        for(String tmp:str){
+//            count = statement.executeUpdate(tmp);
+//            System.out.println("新增："+ count + "筆");
+//        }
 
             //建立查詢物件
 //            ResultSet rsR = statement.executeQuery(strRead);
@@ -77,19 +81,8 @@ public class DBUtil {
             int countdel = statement.executeUpdate(strDel);
             System.out.println("刪除" + countdel +"筆");
 
-        //System.out.println("member 資料表已建立");
-
-//        新增成員進table
-//        String[] str ={
-//                "insert into mysql_DB.member(id,name,sex) values(3,\"marry\",\"女\")"
-//        };
-//        int count ;
-//        for(String tmp:str){
-//            count = statement.executeUpdate(tmp);
-//            System.out.println("新增："+ count + "筆");
-//        }
-
-
+            System.out.println("member 資料表已建立");
+            
 //        //移到資料庫結尾
 //        rs.last();
 //        if (rs.isLast()){
