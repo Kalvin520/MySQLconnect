@@ -26,8 +26,16 @@ public class DBUtil {
         }
     }
 
+    //SQLcreat
+    static String strcre = "create table member (" + "id Integer primary key," + "name varchar(10)," + "sex varchar(10))";
+
     //SQL查詢語法
-    static String str = "select * from mysql_DB.member where name like '%r%'";
+    static String strRead = "select * from mysql_DB.member where name like '%r%'";
+
+    //SQL更新語法
+    static String strUpdate = "update mysql_DB.member set name='merry' where name='jerry'";
+
+    //SQL刪除語法
 
 
 
@@ -43,27 +51,31 @@ public class DBUtil {
             //ResultSet.CONCUR_UPDATATABLE:指定可以更新結果集
             Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
-            //設定資料長度
-            // String str = "create table member (" + "id Integer primary key," + "name varchar(10)," + "sex varchar(10))";
-            // statement.executeUpdate(str);
+            //增加物件
+            // statement.executeUpdate(strcre);
 
             //建立查詢物件
-            ResultSet rs = statement.executeQuery(str);
-            System.out.println("connection open.");
+//            ResultSet rsR = statement.executeQuery(strRead);
 
-            while (rs.next()){
-                System.out.println("第" + rs.getRow() + "筆");
-                System.out.print(rs.getInt("id") + "\t");
-                System.out.print(rs.getString("name") + "\t");
-                System.out.println(rs.getString("sex") + "\t");
-            }
+            //查詢物件loop
+//            while (rsR.next()){
+//                System.out.println("第" + rsR.getRow() + "筆");
+//                System.out.print(rsR.getInt("id") + "\t");
+//                System.out.print(rsR.getString("name") + "\t");
+//                System.out.println(rsR.getString("sex") + "\t");
+//            }
 
+            //更新物件
+//            int count = statement.executeUpdate(strUpdate);
+//            System.out.println("更新" + count +"筆");
+//            System.out.println("connection open.");
 
         //System.out.println("member 資料表已建立");
 
-        String[] str ={
-                "insert into mysql_DB.member(id,name,sex) values(3,\"marry\",\"女\")"
-        };
+//        新增成員進table
+//        String[] str ={
+//                "insert into mysql_DB.member(id,name,sex) values(3,\"marry\",\"女\")"
+//        };
 //        int count ;
 //        for(String tmp:str){
 //            count = statement.executeUpdate(tmp);
