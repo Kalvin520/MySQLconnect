@@ -1,7 +1,7 @@
-import java.sql.ResultSet;
+import javax.sql.rowset.JdbcRowSet;
+import javax.sql.rowset.RowSetProvider;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.Statement;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 
@@ -25,6 +25,12 @@ public class DBUtil {
         }
     }
 
+
+
+
+
+
+
     //SQLset
     static String strset = "create table member (" + "id Integer primary key," + "name varchar(10)," + "sex varchar(10))";
 
@@ -32,84 +38,57 @@ public class DBUtil {
     static String strcre = "insert into mysql_DB.member (id, name, sex) values (?, ?, ?)";
 
     //SQL查詢語法
-    static String strRead = " select * from mysql_DB.member where name like '%r%' ";
+    static String strRead = " select * from mysql_DB.member  ";
 
     //SQL更新語法
-    static String strUpdate = " update mysql_DB.member set name = 'merry' where name = 'jerry' ";
+    static String strUpdate = " update mysql_DB.member set name = 'kevin' where name = 'john' ";
 
     //SQL刪除語法
-    static String strDel = " delete from mysql_DB.member where name = 'merry' ";
+    static String strDel = " delete from mysql_DB.member where name = 'kevin' ";
 
 
 
     //建立取得資料庫連街物件靜態方法
-    public static Connection getConnection() {
+    public static  Connection getConnection() {
         //取得資料庫連接物件
         Connection connection = null;
         try {
             //與資料庫連接
             connection = DriverManager.getConnection(url, user, password);
+
+            JdbcRowSet jdbcRowSet = RowSetProvider.newFactory().createJdbcRowSet();
+
             //獲取SQL語法
-            //ResultSet.TYPE_SCROLL_INSENSITIVE:使結果可以來回查看
-            //ResultSet.CONCUR_UPDATATABLE:指定可以更新結果集
-//            Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
             PreparedStatement preparedStatement = connection.prepareStatement(strcre);
             System.out.println("connection open.");
 
 
+            //新增物件
+//            preparedStatement.setInt(1,2);
+//            preparedStatement.setString(2,"john");
+//            preparedStatement.setString(3,"男");
+//            int countcre = preparedStatement.executeUpdate();
+//            System.out.println("新增："+ countcre + "筆");
 
-            preparedStatement.setInt(1,2);
-            preparedStatement.setString(2,"john");
-            preparedStatement.setString(3,"男");
-            int countcre = preparedStatement.executeUpdate();
-            System.out.println("新增："+ countcre + "筆");
-
-          
-//        };
-//        int count ;
-//        for(String tmp:str){
-//            count = statement.executeUpdate(tmp);
-//            System.out.println("新增："+ count + "筆");
-//        }
-
-            //建立查詢物件
-//            ResultSet rsR = statement.executeQuery(strRead);
-
-            //查詢物件loop
-//            while (rsR.next()){
-//                System.out.println("第" + rsR.getRow() + "筆");
-//                System.out.print(rsR.getInt("id") + "\t");
-//                System.out.print(rsR.getString("name") + "\t");
-//                System.out.println(rsR.getString("sex") + "\t");
-//            }
+            //查詢物件
+            jdbcRowSet.setUrl(url);
+            jdbcRowSet.setUsername(user);
+            jdbcRowSet.setPassword(password);
+            jdbcRowSet.setCommand(strRead);
+            jdbcRowSet.execute();
+            while (jdbcRowSet.next()){
+                System.out.println(jdbcRowSet.getInt(1) + "\t" + jdbcRowSet.getString(2) + "\t" + jdbcRowSet.getString(3));
+            }
 
             //更新物件
-//            int countup = statement.executeUpdate(strUpdate);
-//            System.out.println("更新" + countup +"筆");
-//            System.out.println("connection open.");
+            int countup = preparedStatement.executeUpdate(strUpdate);
+            System.out.println("更新" + countup +"筆");
 
             //刪除物件
-//            int countdel = statement.executeUpdate(strDel);
+//            int countdel = preparedStatement.executeUpdate(strDel);
 //            System.out.println("刪除" + countdel +"筆");
 //
-//            System.out.println("member 資料表已建立");
-            
-//        //移到資料庫結尾
-//        rs.last();
-//        if (rs.isLast()){
-//            System.out.println("資料庫結尾");
-//        }
-
-//        //移到資料庫開頭
-//        rs.first();
-//        if (rs.isFirst()){
-//            System.out.println("資料庫結開頭");
-//        }
-//
-//        //移到資料庫第二筆
-//        rs.absolute(2);
-//        System.out.println(rs.getString("name") + "\t");
-//        System.out.println();
+            System.out.println("member表格重新完成部署");
 
 //        //取得欄位數量
 //        int columns = rs.getMetaData().getColumnCount();
@@ -117,6 +96,9 @@ public class DBUtil {
 //            System.out.print(rs.getMetaData().getColumnName(i) + ":");//取得欄位名稱
 //            System.out.println(rs.getMetaData().getColumnTypeName(i));//取得欄位資料型態
 //        }
+
+
+
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
