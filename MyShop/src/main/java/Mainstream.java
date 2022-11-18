@@ -1,6 +1,6 @@
 import java.sql.Connection;
 
-public class MyShop {
+public class Mainstream {
     public static void main(String[] args) {
         Connection connection = DBUtil.getConnection();
 
