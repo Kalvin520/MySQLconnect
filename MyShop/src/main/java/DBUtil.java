@@ -26,11 +26,6 @@ public class DBUtil {
     }
 
 
-
-
-
-
-
     //SQLset
     static String strset = "create table member (" + "id Integer primary key," + "name varchar(10)," + "sex varchar(10))";
 
@@ -64,11 +59,11 @@ public class DBUtil {
 
 
             //新增物件
-//            preparedStatement.setInt(1,2);
-//            preparedStatement.setString(2,"john");
-//            preparedStatement.setString(3,"男");
-//            int countcre = preparedStatement.executeUpdate();
-//            System.out.println("新增："+ countcre + "筆");
+            preparedStatement.setInt(1,2);
+            preparedStatement.setString(2,"john");
+            preparedStatement.setString(3,"男");
+            int countcre = preparedStatement.executeUpdate();
+            System.out.println("新增："+ countcre + "筆");
 
             //查詢物件
             jdbcRowSet.setUrl(url);
